@@ -6,13 +6,14 @@
   
 	// Function to generate random lightning shapes
 	function createFlashes() {
-	  flashes = Array.from({ length: 5 }, () => ({
-		x1: Math.random() * 100 + "%",
-		y1: Math.random() * 100 + "%",
-		x2: Math.random() * 100 + "%",
-		y2: Math.random() * 100 + "%",
-		width: Math.random() * 10 + "px",
-	  }));
+		flashes = Array.from({ length: 10 }, () => ({
+			x1: Math.random() * 100 + "%",
+			y1: Math.random() * 100 + "%",
+			x2: Math.random() * 100 + "%",
+			y2: Math.random() * 100 + "%",
+			width: Math.random() * 20 + "px", // Increase the maximum width
+			rotation: Math.random() * 360 + "deg" // Add random rotation
+		}));
 	}
   
 	// Start flashing effect
@@ -62,8 +63,8 @@
 	  /* Simulate lightning with border and skew */
 	  border: 5px solid white;
 	  border-top: 0;
-	  transform: skewX(-30deg) skewY(-30deg);
-	  animation: fade 1s ease-out forwards;
+	  transform: skewX(-30deg) skewY(-30deg) rotate(var(--rotation));
+	  animation: fade 0.5s ease-out forwards, glitch 0.2s infinite; /* Add glitch animation */
 	}
   
 	@keyframes fade {
@@ -73,6 +74,21 @@
 	  100% {
 		opacity: 0;
 	  }
+	}
+
+	@keyframes glitch {
+		0% {
+			transform: translate(0, 0);
+		}
+		33% {
+			transform: translate(-5px, 5px);
+		}
+		66% {
+			transform: translate(5px, -5px);
+		}
+		100% {
+			transform: translate(0, 0);
+		}
 	}
   
 	.video-container {
@@ -132,7 +148,7 @@
   
   <div>
 	{#each flashes as flash (flash.x1 + flash.y1)}
-	  <div class="flash" style="left: {flash.x1}; top: {flash.y1}; width: {flash.width};"></div>
+	  <div class="flash" style="left: {flash.x1}; top: {flash.y1}; width: {flash.width}; --rotation: {flash.rotation};"></div>
 	{/each}
 	<h1 class="sixtyfour-a">A N D R O I D Z</h1>
   
