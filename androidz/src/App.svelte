@@ -150,7 +150,7 @@
 	{#each flashes as flash (flash.x1 + flash.y1)}
 	  <div class="flash" style="left: {flash.x1}; top: {flash.y1}; width: {flash.width}; --rotation: {flash.rotation};"></div>
 	{/each}
-	<h1 class="sixtyfour-a">A N D R O I D Z</h1>
+	<h1 class="sixtyfour-a">A N D R O ! D Z</h1>
   
 	<div class="video-container">
 	  <iframe  height="642" src="https://www.youtube.com/embed/5In82sOFBkg" title="Back to you" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
