@@ -1,6 +1,25 @@
 import { collection, getDocs, addDoc, deleteDoc, doc, setDoc} from "firebase/firestore";
 import { db } from "../firebase";
 
+
+export const sendMail = functions.https.onCall((data, context) => {
+  const mailOptions = {
+    from: data.email,
+    to: 'jonas.quintiens@gmail.com',
+    subject: `Message from ${data.name}: ${data.subject}`,
+    text: data.message
+  };
+  return transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error("Error sending email: ", error);
+      return { success: false };
+    } else {
+      console.log("Email sent: ", info.response);
+      return { success: true };
+    }
+  });
+});
+
 export const fetchShows = async () => {
   try {
     const showsCollection = collection(db, "Shows");

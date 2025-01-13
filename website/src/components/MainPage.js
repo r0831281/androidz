@@ -1,140 +1,169 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment'; // Import moment.js
-import { fetchShows, fetchSongs } from '../services/showService'; // Import the service
+import { fetchShows, fetchSongs, sendMail } from '../services/showService'; // Import the service
 import '../index.css'; // Add this line to import the CSS file
-import LightningFlash from './LightningFlash'; 
+import LightningFlash from './LightningFlash';
 
 // SongCard Component
 const SongCard = ({ song }) => {
-    let videoId = '';
-    try {
-        videoId = new URL(song.link).searchParams.get('v'); // Extract YouTube video ID from the link
-    } catch (error) {
-        console.error('Invalid URL:', song.link);
-    }
-    const embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}` : '';
+  let videoId = '';
+  try {
+    videoId = new URL(song.link).searchParams.get('v'); // Extract YouTube video ID from the link
+  } catch (error) {
+    console.error('Invalid URL:', song.link);
+  }
+  const embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}` : '';
 
-    return (
-        <div
-            style={{
-                border: '1px solid #ddd',
-                borderRadius: '8px',
-                padding: '16px',
-                marginBottom: '16px',
-                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-            }}
-        >
-            <h3 style={{ margin: 0 }}>{song.title}</h3>
-            <p style={{ fontSize: '14px', color: '#666' }}>By: Andro!dz</p>
-            {embedUrl && (
-                <div style={{ marginTop: '10px', overflow: 'hidden', borderRadius: '8px' }}>
-                    <iframe
-                        width="100%"
-                        height="200"
-                        src={embedUrl}
-                        title={song.title}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    ></iframe>
-                </div>
-            )}
+  return (
+    <div className="col-lg-4 col-md-6 d-flex align-items-stretch">
+      <div className="card mb-4" style={{ borderRadius: '16px', border: 'none', width: '100%' }}>
+        <div className="card-body d-flex flex-column">
+          <h3 className="card-title">{song.title}</h3>
+          <p className="card-text text-muted">By: Andro!dz</p>
+          {embedUrl && (
+            <div className="ratio ratio-16x9 mt-auto">
+              <iframe
+                src={embedUrl}
+                title={song.title}
+                className="card-img-top"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          )}
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 function MainPage() {
     const [shows, setShows] = useState([]);
     const [songs, setSongs] = useState([]);
-
+    const [formData, setFormData] = useState({ name: '', email: '', message: '' }); // Contact form state
+  
     useEffect(() => {
-        const getInitialShows = async () => {
-            const fetchedShows = await fetchShows();
-            const fetchedSongs = await fetchSongs();
-            setShows(fetchedShows);
-            setSongs(fetchedSongs);
-        };
-        getInitialShows();
+      const getInitialShows = async () => {
+        const fetchedShows = await fetchShows();
+        const fetchedSongs = await fetchSongs();
+        setShows(fetchedShows);
+        setSongs(fetchedSongs);
+      };
+      getInitialShows();
     }, []);
-
+  
+    // Handle contact form input change
+    const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    };
+  
+    // Handle contact form submission
+    const handleFormSubmit = (e) => {
+      e.preventDefault();
+      console.log('Form submitted:', formData); 
+      alert('Thank you for reaching out! We will get back to you soon.');
+      setFormData({ name: '', email: '', message: '' }); // Reset the form
+    };
+  
+    // Sort shows by date in descending order
     const sortedShows = shows.slice().sort((a, b) => {
-        const dateA = moment(a.date, 'DD/MM/YY').valueOf();
-        const dateB = moment(b.date, 'DD/MM/YY').valueOf();
-        console.log('Parsed Date A:', dateA, 'Parsed Date B:', dateB);
-        return dateB - dateA;
+      const dateA = moment(a.date, 'DD/MM/YY').valueOf();
+      const dateB = moment(b.date, 'DD/MM/YY').valueOf();
+      return dateB - dateA;
     });
-
+  
     return (
-        <div
-            style={{
-                padding: '20px',
-                fontFamily: 'Orbitron, sans-serif',
-                textAlign: 'center',
-                backgroundColor: '#000',
-                minHeight: '100vh',
-                color: '#fff',
-            }}
-        >
-            {/* Include the LightningFlash component */}
-            <LightningFlash />
-            <h1 style={{ textAlign: 'center', color: '#4CAF50' }} className="silkscreen-bold">A N D R O ! D Z</h1>
-            <h2 style={{ color: '#FF5722' }}>Songs</h2>
-            <div
-                style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                    gap: '16px',
-                }}
-            >
-                {songs.map((song) => (
-                    <SongCard key={song.id} song={song} />
-                ))}
-            </div>
-            <h2 style={{ color: '#FF5722' }}>Shows</h2>
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    marginTop: '20px',
-                }}
-            >
-                <table
-                    className="table table-striped table-bordered text-center"
-                    style={{
-                        maxWidth: '600px',
-                        width: '100%',
-                        backgroundColor: '#222',
-                        color: '#fff',
-                        border: '1px solid #444',
-                        borderRadius: '8px',
-                    }}
-                >
-                    <thead style={{ backgroundColor: '#333' }}>
-                        <tr>
-                            <th>Venue</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {sortedShows.map((show) => {
-                            const isPastShow = new Date(show.date) < new Date();
-                            return (
-                                <tr
-                                    key={show.id}
-                                    style={{
-                                        backgroundColor: isPastShow ? '#555' : '#444',
-                                    }}
-                                >
-                                    <td>{show.venue}</td>
-                                    <td>{show.date}</td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
-            </div>
+      <div className="container-fluid vh-100 text-white">
+        <LightningFlash />
+  
+        <div className="text-center py-4">
+          <img src="wit.svg" alt="A N D R O ! D Z" className="mx-auto mb-4" width="100%" style={{ maxHeight: '250px' }} />
+          <h1 className="display-4 text-warning Orbitron">Songs</h1>
         </div>
+  
+        <div className="container mb-5">
+          <div className="row g-4 d-flex justify-content-around">
+            {songs.map((song) => (
+              <SongCard key={song.id} song={song} />
+            ))}
+          </div>
+        </div>
+  
+        <div className="container mb-5">
+          <h1 className="display-4 text-warning text-center mb-4 Orbitron">Shows</h1>
+          <div className="table-responsive">
+            <table className="table table-bordered text-center rounded-lg">
+              <thead className="table-dark">
+                <tr>
+                  <th>Venue</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {sortedShows.map((show) => {
+                  const showDate = moment(show.date, 'DD/MM/YY').toDate();
+                  const isPastShow = showDate < new Date();
+                  return (
+                    <tr key={show.id} className={isPastShow ? 'bg-light' : 'bg-secondary text-white'}>
+                      <td className={isPastShow ? 'text-muted bg-secondary' : 'bg-light'}>{show.venue}</td>
+                      <td className={isPastShow ? 'text-muted bg-secondary' : 'bg-light'}>
+                        {moment(show.date, 'DD/MM/YY').format('MMMM Do, YYYY')}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+  
+        {/* Contact Form Section */}
+        <div className="container mb-5">
+          <h1 className="display-4 text-warning text-center mb-4 Orbitron">Contact Us</h1>
+          <form onSubmit={handleFormSubmit} className="p-4 bg-dark rounded">
+            <div className="mb-3">
+              <label htmlFor="name" className="form-label text-warning">Name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label text-warning">Email</label>
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="message" className="form-label text-warning">Message</label>
+              <textarea
+                className="form-control"
+                id="message"
+                name="message"
+                rows="5"
+                value={formData.message}
+                onChange={handleInputChange}
+                required
+              ></textarea>
+            </div>
+            <button type="submit" className="btn btn-warning w-100">Send Message</button>
+          </form>
+        </div>
+      </div>
     );
-}
-
-export default MainPage;
+  }
+  
+  export default MainPage;
+  

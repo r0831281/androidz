@@ -1,8 +1,9 @@
 body {
   margin: 0;
-  font-family:sans-serif;
+  font-family: 'Orbitron';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #0a0a0a;
 }
 
 code {
@@ -20,6 +21,14 @@ code {
   font-family: "Silkscreen", serif;
   font-weight: 700;
   font-style: normal;
+}
+.table-container {
+  width: 80%; /* Adjust width as needed */
+  margin: 0 auto; /* Center the table */
+}
+
+.Orbitron {
+  font-family: "Orbitron", sans-serif;
 }
 
 @keyframes lightningFlash {

@@ -87,7 +87,7 @@ function AdminPage() {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 text-light">
       <h2 className="mb-4">Admin Page</h2>
       {isLoggedIn ? (
         <>
