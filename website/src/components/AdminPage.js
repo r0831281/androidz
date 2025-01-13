@@ -98,7 +98,7 @@ function AdminPage() {
             <form onSubmit={handleCreateShow} className="form-inline">
               <input type="text" placeholder="Show Venue" name="showVenue" required className="form-control mr-2 mb-2" />
               <input type="text" placeholder="Show Date" name="showDate" required className="form-control mr-2 mb-2" />
-              <input type="text" placeholder="Show Tickets" name="showTickets" required className="form-control mr-2 mb-2" />
+              <input type="text" placeholder="Show Tickets" name="showTickets" className="form-control mr-2 mb-2" />
               <button type="submit" className="btn btn-primary mb-2">Create Show</button>
             </form>
           </div>
