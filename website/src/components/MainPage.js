@@ -4,8 +4,7 @@ import { fetchShows, fetchSongs } from '../services/showService'; // Import the 
 import '../index.css'; // Add this line to import the CSS file
 import LightningFlash from './LightningFlash';
 import SongCard from './SongCard';
-// SongCard Component
-
+import ButtonComponent from './ButtonComponent';
 
 function MainPage() {
   const [shows, setShows] = useState([]);
@@ -60,14 +59,21 @@ function MainPage() {
 
   // Sort shows by date in descending order
   const sortedShows = shows.slice().sort((a, b) => {
-    const dateA = moment(a.date, 'DD/MM/YY').valueOf();
-    const dateB = moment(b.date, 'DD/MM/YY').valueOf();
-    return dateB - dateA;
+    const dateA = moment(a.date, 'DD/MM/YY').toDate();
+    const dateB = moment(b.date, 'DD/MM/YY').toDate();
+  
+    const isUpcomingA = dateA >= new Date(); // Check if show A is upcoming
+    const isUpcomingB = dateB >= new Date(); // Check if show B is upcoming
+  
+    if (isUpcomingA && !isUpcomingB) return -1; // Upcoming shows come first
+    if (!isUpcomingA && isUpcomingB) return 1;  // Past shows come after
+    return dateA - dateB; // Sort upcoming shows in ascending order and past in descending
   });
 
   return (
     <div className="container-fluid vh-100 text-white">
       <LightningFlash />
+
 
       <div className="text-center py-4">
         <img src="wit.svg" alt="A N D R O ! D Z" className="mx-auto mb-4" width="100%" style={{ maxHeight: '250px' }} />
@@ -112,7 +118,7 @@ function MainPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Buy Tickets
+                    {isPastShow ? 'Video' : 'Buy Tickets'}
                   </a>
                 ) : (
                   'N/A'

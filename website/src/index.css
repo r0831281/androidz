@@ -70,3 +70,31 @@ code {
   filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
   opacity: 0; /* Default to hidden */
 }
+
+
+.attention-grabber-button {
+  display: inline-block;
+  font-family: 'Orbitron', sans-serif; /* Matches your site style */
+  font-size: 1.5rem; /* Large font size */
+  color: black; /* Black text for strong contrast */
+  background: linear-gradient(45deg, #ffeb3b, #ffc107); /* Eye-catching yellow gradient */
+  padding: 20px 40px; /* Large padding for a big button */
+  border: none;
+  border-radius: 10px; /* Smooth rounded edges */
+  box-shadow: 0 5px 15px rgba(255, 193, 7, 0.5); /* Glowing effect */
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-transform: uppercase; /* Bold uppercase text */
+  text-decoration: none; /* Remove underline for links */
+  text-align: center;
+}
+
+.attention-grabber-button:hover {
+  transform: scale(1.1); /* Slightly enlarge on hover */
+  box-shadow: 0 10px 30px rgba(255, 193, 7, 0.8); /* Intense shadow on hover */
+}
+
+.attention-grabber-button:active {
+  transform: scale(0.95); /* Pressed effect */
+  box-shadow: 0 5px 15px rgba(255, 193, 7, 0.5); /* Reset shadow */
+}
