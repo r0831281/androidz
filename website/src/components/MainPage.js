@@ -84,42 +84,48 @@ function MainPage() {
       </div>
 
       <div className="container mb-5">
-        <h1 className="display-4 text-warning text-center mb-4 Orbitron">Shows</h1>
-        <div className="table-responsive">
-          <table className="table table-bordered text-center rounded-lg">
-            <thead className="table-dark">
-              <tr>
-                <th>Venue</th>
-                <th>Date</th>
-                <th>Tickets</th>
-              </tr>
-            </thead>
-            <tbody>
-              {sortedShows.map((show) => {
-                const showDate = moment(show.date, 'DD/MM/YY').toDate();
-                const isPastShow = showDate < new Date();
-                return (
-                  <tr key={show.id} className={isPastShow ? 'bg-light' : 'bg-secondary text-white'}>
-                  <td className={isPastShow ? 'text-muted bg-secondary' : 'bg-light'}>{show.venue}</td>
-                  <td className={isPastShow ? 'text-muted bg-secondary' : 'bg-light'}>
-                    {moment(show.date, 'DD/MM/YY').format('MMMM Do, YYYY')}
-                  </td>
-                  <td className={isPastShow ? 'text-muted bg-secondary' : 'bg-light'}>
-                    {show.tickets ? (
-                    <a href={show.tickets} className="btn btn-warning" target="_blank" rel="noopener noreferrer">
-                      Buy Tickets
-                    </a>
-                    ) : (
-                    'N/A'
-                    )}
-                  </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div>
+  <h1 className="display-4 text-warning text-center mb-4 Orbitron">Shows</h1>
+  <div className="table-responsive">
+    <table className="table table-bordered text-center rounded-lg" style={{ tableLayout: 'fixed', width: '100%' }}>
+      <thead className="table-dark">
+        <tr>
+          <th>Venue</th>
+          <th>Date</th>
+          <th>Tickets</th>
+        </tr>
+      </thead>
+      <tbody>
+        {sortedShows.map((show) => {
+          const showDate = moment(show.date, 'DD/MM/YY').toDate();
+          const isPastShow = showDate < new Date();
+          return (
+            <tr key={show.id} className={isPastShow ? 'bg-light' : 'bg-secondary text-white'}>
+              <td className={isPastShow ? 'text-muted bg-secondary' : 'bg-light'}>{show.venue}</td>
+              <td className={isPastShow ? 'text-muted bg-secondary' : 'bg-light'}>
+                {moment(show.date, 'DD/MM/YY').format('MMMM Do, YYYY')}
+              </td>
+              <td className={isPastShow ? 'text-muted bg-secondary' : 'bg-light'}>
+                {show.tickets ? (
+                  <a
+                    href={show.tickets}
+                    className="btn btn-warning"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Buy Tickets
+                  </a>
+                ) : (
+                  'N/A'
+                )}
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  </div>
+</div>
+
 
       {/* Contact Form Section */}
       <div className="container mb-15 p-4">
