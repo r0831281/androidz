@@ -1,17 +1,16 @@
 import React, { useEffect, useState, useRef } from 'react';
-import moment from 'moment'; // Import moment.js
-import { fetchShows, fetchSongs } from '../services/showService'; // Import the service
-import '../index.css'; // Add this line to import the CSS file
+import moment from 'moment'; 
+import { fetchShows, fetchSongs } from '../services/showService'; 
+import '../index.css'; 
 import LightningFlash from './LightningFlash';
 import SongCard from './SongCard';
-import ButtonComponent from './ButtonComponent';
 
 function MainPage() {
   const [shows, setShows] = useState([]);
   const [songs, setSongs] = useState([]);
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' }); // Contact form state
-  const submitButtonRef = useRef(null); // Ref for the submit button
-
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' }); 
+  const submitButtonRef = useRef(null); 
+  
   useEffect(() => {
     const getInitialShows = async () => {
       const fetchedShows = await fetchShows();
@@ -75,7 +74,7 @@ function MainPage() {
       <LightningFlash />
 
       <div className="text-center py-4">
-        <img src="wit.svg" alt="A N D R O ! D Z" className="mx-auto mb-4" width="100%" style={{ maxHeight: '250px' }} />
+        <img src="wit.svg" alt="A N D R O ! D Z" className="mx-auto mb-4" width="100%" style={{ maxHeight: '250px' }} loading="lazy" />
         <h1 className="display-4 text-warning Orbitron">Songs</h1>
       </div>
 
@@ -177,10 +176,10 @@ function MainPage() {
       <footer className="footer">
         <div className="social-icons">
           <a href="https://www.instagram.com/androidz_music/" target="_blank" rel="noopener noreferrer">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" className="social-icon" width="30" height="30" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" className="social-icon" width="30" height="30" loading="lazy" />
           </a>
           <a href="https://linktr.ee/androidz_music" target="_blank" rel="noopener noreferrer">
-            <img src="https://cdn.brandfetch.io/id_tNIm05N/theme/dark/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B" alt="Linktree" className="social-icon" width="30" height="30" />
+            <img src="https://cdn.brandfetch.io/id_tNIm05N/theme/dark/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B" alt="Linktree" className="social-icon" width="30" height="30" loading="lazy" />
           </a>
         </div>
       </footer>
