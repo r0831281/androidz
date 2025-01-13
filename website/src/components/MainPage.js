@@ -74,12 +74,10 @@ function MainPage() {
     <div className="container-fluid vh-100 text-white">
       <LightningFlash />
 
-
       <div className="text-center py-4">
         <img src="wit.svg" alt="A N D R O ! D Z" className="mx-auto mb-4" width="100%" style={{ maxHeight: '250px' }} />
         <h1 className="display-4 text-warning Orbitron">Songs</h1>
       </div>
-
 
       <div className="container mb-5">
         <div className="row g-4 d-flex justify-content-center">
@@ -90,51 +88,50 @@ function MainPage() {
       </div>
 
       <div className="container mb-5">
-  <h1 className="display-4 text-warning text-center mb-4 Orbitron">Shows</h1>
-  <div className="table-responsive">
-    <table className="table table-bordered text-center rounded-lg" style={{ tableLayout: 'fixed', width: '100%' }}>
-      <thead className="table-dark">
-        <tr>
-          <th>Venue</th>
-          <th>Date</th>
-          <th>Tickets</th>
-        </tr>
-      </thead>
-      <tbody>
-        {sortedShows.map((show) => {
-          const showDate = moment(show.date, 'DD/MM/YY').toDate();
-          const isPastShow = showDate < new Date();
-          return (
-            <tr key={show.id} className={isPastShow ? 'bg-light' : 'bg-secondary text-white'}>
-              <td className={isPastShow ? 'text-muted bg-secondary' : 'bg-light'}>{show.venue}</td>
-              <td className={isPastShow ? 'text-muted bg-secondary' : 'bg-light'}>
-                {moment(show.date, 'DD/MM/YY').format('MMMM Do, YYYY')}
-              </td>
-              <td className={isPastShow ? 'text-muted bg-secondary' : 'bg-light'}>
-                {show.tickets ? (
-                  <a
-                    href={show.tickets}
-                    className="btn btn-warning"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {isPastShow ? 'Video' : 'Buy Tickets'}
-                  </a>
-                ) : (
-                  'N/A'
-                )}
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
-  </div>
-</div>
-
+        <h1 className="display-4 text-warning text-center mb-4 Orbitron">Shows</h1>
+        <div className="table-responsive">
+          <table className="table table-bordered text-center rounded-lg" style={{ tableLayout: 'fixed', width: '100%' }}>
+            <thead className="table-dark">
+              <tr>
+                <th>Venue</th>
+                <th>Date</th>
+                <th>Tickets</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sortedShows.map((show) => {
+                const showDate = moment(show.date, 'DD/MM/YY').toDate();
+                const isPastShow = showDate < new Date();
+                return (
+                  <tr key={show.id} className={isPastShow ? 'bg-light' : 'bg-secondary text-white'}>
+                    <td className={isPastShow ? 'text-muted bg-secondary' : 'bg-light'}>{show.venue}</td>
+                    <td className={isPastShow ? 'text-muted bg-secondary' : 'bg-light'}>
+                      {moment(show.date, 'DD/MM/YY').format('MMMM Do, YYYY')}
+                    </td>
+                    <td className={isPastShow ? 'text-muted bg-secondary' : 'bg-light'}>
+                      {show.tickets ? (
+                        <a
+                          href={show.tickets}
+                          className="btn btn-warning"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {isPastShow ? 'Video' : 'Buy Tickets'}
+                        </a>
+                      ) : (
+                        'N/A'
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       {/* Contact Form Section */}
-      <div className="container mb-15 p-4">
+      <div className="container mb-5 p-4">
         <h1 className="display-4 text-warning text-center mb-4 Orbitron">Contact Us</h1>
         <form onSubmit={handleFormSubmit} className="p-5 bg-dark rounded">
           <div className="mb-3">
@@ -176,20 +173,18 @@ function MainPage() {
           <button type="submit" className="btn btn-warning w-100" ref={submitButtonRef}>Send Message</button>
         </form>
       </div>
-           <div>
-          <footer style={{ position: 'fixed', right: '10px', top: '95%', transform: 'translateY(-95%)', backgroundColor: '#ffc107', borderRadius: '10px', padding: '10px', width: '60px', display: 'flex', flexDirection: 'column', alignItems: 'center' }} className="footer">
-            <div style={{ padding: '5px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <a href="https://www.instagram.com/androidz_music/" target="_blank" rel="noopener noreferrer" style={{ margin: '5px 0' }}>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style={{ width: '25px', height: '25px' }}></img>
-              </a>
-              <a href="https://linktr.ee/androidz_music" target="_blank" rel="noopener noreferrer" style={{ margin: '5px 0' }}>
-                <img src="https://cdn.brandfetch.io/id_tNIm05N/theme/dark/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B" alt="Linktree" style={{ width: '25px', height: '25px', filter: 'invert(20%)' }}></img>
-              </a>
-            </div>
-          </footer>
-          </div>   
+
+      <footer className="footer">
+        <div className="social-icons">
+          <a href="https://www.instagram.com/androidz_music/" target="_blank" rel="noopener noreferrer">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" className="social-icon" width="30" height="30" />
+          </a>
+          <a href="https://linktr.ee/androidz_music" target="_blank" rel="noopener noreferrer">
+            <img src="https://cdn.brandfetch.io/id_tNIm05N/theme/dark/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B" alt="Linktree" className="social-icon" width="30" height="30" />
+          </a>
+        </div>
+      </footer>
     </div>
-    
   );
 }
 

@@ -31,21 +31,8 @@ code {
   font-family: "Orbitron", sans-serif;
 }
 
-.footer {
-  position: fixed;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
 
-@media (min-width: 900px) {
-  .footer {
-    position: relative;
-    transform: none;
-    text-align: center;
-    margin-top: 20px;
-  }
-}
+
 
 @keyframes lightningFlash {
   0%, 100% {
@@ -97,4 +84,33 @@ code {
 .attention-grabber-button:active {
   transform: scale(0.95); /* Pressed effect */
   box-shadow: 0 5px 15px rgba(255, 193, 7, 0.5); /* Reset shadow */
+}
+
+.footer {
+  position: fixed;
+  right: 15px;
+  top: 92%;
+  transform: translateY(-50%);
+  background-color: #ffc107;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #ffc107;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
+.social-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.social-icon {
+  width: 25px;
+  height: 25px;
+  filter: invert(20%);
 }
