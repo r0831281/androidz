@@ -31,6 +31,22 @@ code {
   font-family: "Orbitron", sans-serif;
 }
 
+.footer {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@media (min-width: 900px) {
+  .footer {
+    position: relative;
+    transform: none;
+    text-align: center;
+    margin-top: 20px;
+  }
+}
+
 @keyframes lightningFlash {
   0%, 100% {
       opacity: 0;
