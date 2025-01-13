@@ -44,8 +44,9 @@ export const makeShow = async (event) => {
   try {
     const showVenue = event.target.showVenue.value;
     const showDate = event.target.showDate.value;
+    const showLink = event.target.showTickets.value;
     const showsCollection = collection(db, "Shows");
-    await addDoc(showsCollection, { venue: showVenue, date: showDate });
+    await addDoc(showsCollection, { venue: showVenue, date: showDate, tickets: showLink });
     console.log("Show created successfully");
   } catch (error) {
     console.error("Error creating show: ", error.message);

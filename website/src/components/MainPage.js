@@ -3,39 +3,9 @@ import moment from 'moment'; // Import moment.js
 import { fetchShows, fetchSongs } from '../services/showService'; // Import the service
 import '../index.css'; // Add this line to import the CSS file
 import LightningFlash from './LightningFlash';
-
+import SongCard from './SongCard';
 // SongCard Component
-const SongCard = ({ song }) => {
-  let videoId = '';
-  try {
-    videoId = new URL(song.link).searchParams.get('v'); // Extract YouTube video ID from the link
-  } catch (error) {
-    console.error('Invalid URL:', song.link);
-  }
-  const embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}` : '';
 
-  return (
-    <div className="col-lg-4 col-md-6 d-flex align-items-stretch">
-      <div className="card mb-4" style={{ borderRadius: '16px', border: 'none', width: '100%' }}>
-        <div className="card-body d-flex flex-column">
-          <h3 className="card-title">{song.title}</h3>
-          <p className="card-text text-muted">By: Andro!dz</p>
-          {embedUrl && (
-            <div className="ratio ratio-16x9 mt-auto">
-              <iframe
-                src={embedUrl}
-                title={song.title}
-                className="card-img-top"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-};
 
 function MainPage() {
   const [shows, setShows] = useState([]);
@@ -104,8 +74,9 @@ function MainPage() {
         <h1 className="display-4 text-warning Orbitron">Songs</h1>
       </div>
 
+
       <div className="container mb-5">
-        <div className="row g-4 d-flex justify-content-around">
+        <div className="row g-4 d-flex justify-content-center">
           {songs.map((song) => (
             <SongCard key={song.id} song={song} />
           ))}
@@ -120,6 +91,7 @@ function MainPage() {
               <tr>
                 <th>Venue</th>
                 <th>Date</th>
+                <th>Tickets</th>
               </tr>
             </thead>
             <tbody>
@@ -128,10 +100,19 @@ function MainPage() {
                 const isPastShow = showDate < new Date();
                 return (
                   <tr key={show.id} className={isPastShow ? 'bg-light' : 'bg-secondary text-white'}>
-                    <td className={isPastShow ? 'text-muted bg-secondary' : 'bg-light'}>{show.venue}</td>
-                    <td className={isPastShow ? 'text-muted bg-secondary' : 'bg-light'}>
-                      {moment(show.date, 'DD/MM/YY').format('MMMM Do, YYYY')}
-                    </td>
+                  <td className={isPastShow ? 'text-muted bg-secondary' : 'bg-light'}>{show.venue}</td>
+                  <td className={isPastShow ? 'text-muted bg-secondary' : 'bg-light'}>
+                    {moment(show.date, 'DD/MM/YY').format('MMMM Do, YYYY')}
+                  </td>
+                  <td className={isPastShow ? 'text-muted bg-secondary' : 'bg-light'}>
+                    {show.tickets ? (
+                    <a href={show.tickets} className="btn btn-warning" target="_blank" rel="noopener noreferrer">
+                      Buy Tickets
+                    </a>
+                    ) : (
+                    'N/A'
+                    )}
+                  </td>
                   </tr>
                 );
               })}
@@ -141,9 +122,9 @@ function MainPage() {
       </div>
 
       {/* Contact Form Section */}
-      <div className="container mb-5">
+      <div className="container mb-15 p-4">
         <h1 className="display-4 text-warning text-center mb-4 Orbitron">Contact Us</h1>
-        <form onSubmit={handleFormSubmit} className="p-4 bg-dark rounded">
+        <form onSubmit={handleFormSubmit} className="p-5 bg-dark rounded">
           <div className="mb-3">
             <label htmlFor="name" className="form-label text-warning">Name</label>
             <input
@@ -183,7 +164,20 @@ function MainPage() {
           <button type="submit" className="btn btn-warning w-100" ref={submitButtonRef}>Send Message</button>
         </form>
       </div>
+           <div>
+          <footer style={{ position: 'fixed', right: '10px', top: '95%', transform: 'translateY(-95%)', backgroundColor: '#ffc107', borderRadius: '10px', padding: '10px', width: '60px', display: 'flex', flexDirection: 'column', alignItems: 'center' }} className="footer">
+            <div style={{ padding: '5px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <a href="https://www.instagram.com/androidz_music/" target="_blank" rel="noopener noreferrer" style={{ margin: '5px 0' }}>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style={{ width: '25px', height: '25px' }}></img>
+              </a>
+              <a href="https://linktr.ee/androidz_music" target="_blank" rel="noopener noreferrer" style={{ margin: '5px 0' }}>
+                <img src="https://cdn.brandfetch.io/id_tNIm05N/theme/dark/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B" alt="Linktree" style={{ width: '25px', height: '25px', filter: 'invert(20%)' }}></img>
+              </a>
+            </div>
+          </footer>
+          </div>   
     </div>
+    
   );
 }
 

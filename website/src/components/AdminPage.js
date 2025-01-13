@@ -98,6 +98,7 @@ function AdminPage() {
             <form onSubmit={handleCreateShow} className="form-inline">
               <input type="text" placeholder="Show Venue" name="showVenue" required className="form-control mr-2 mb-2" />
               <input type="text" placeholder="Show Date" name="showDate" required className="form-control mr-2 mb-2" />
+              <input type="text" placeholder="Show Tickets" name="showTickets" required className="form-control mr-2 mb-2" />
               <button type="submit" className="btn btn-primary mb-2">Create Show</button>
             </form>
           </div>
@@ -116,6 +117,7 @@ function AdminPage() {
                 <tr>
                   <th>Venue</th>
                   <th>Date</th>
+                  <th>Tickets</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -124,6 +126,7 @@ function AdminPage() {
                   <tr key={show.id}>
                     <td>{show.venue}</td>
                     <td>{show.date}</td>
+                    <td>{show.tickets}</td>
                     <td>
                       <button onClick={() => handleDeleteShow(show.id)} className="btn btn-danger mr-2">Delete</button>
                       <button className="btn btn-primary mr-2" onClick={() => handleEditShow(show)}>Edit</button>
@@ -189,7 +192,16 @@ function AdminPage() {
                 required
                 className="form-control mb-2"
               />
+              <input
+                type="text"
+                name="tickets"
+                value={currentEditData?.tickets || ''}
+                onChange={handleChange}
+                placeholder="Show Tickets"
+                className="form-control mb-2"
+              />
             </>
+
           ) : (
             <>
               <input
