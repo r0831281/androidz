@@ -117,7 +117,7 @@ function AdminPage() {
                 <tr>
                   <th>Venue</th>
                   <th>Date</th>
-                  <th>Tickets</th>
+                  <th>Tickets/video</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -128,8 +128,8 @@ function AdminPage() {
                     <td>{show.date}</td>
                     <td>{show.tickets}</td>
                     <td>
-                      <button onClick={() => handleDeleteShow(show.id)} className="btn btn-danger mr-2">Delete</button>
-                      <button className="btn btn-primary mr-2" onClick={() => handleEditShow(show)}>Edit</button>
+                      <button onClick={() => handleDeleteShow(show.id)} className="btn btn-danger action-button">Delete</button>
+                      <button className="btn btn-primary action-button" onClick={() => handleEditShow(show)}>Edit</button>
                     </td>
                   </tr>
                 ))}
@@ -152,8 +152,8 @@ function AdminPage() {
                     <td>{song.title}</td>
                     <td>{song.link}</td>
                     <td>
-                      <button onClick={() => handleDeleteSong(song.id)} className="btn btn-danger mr-2">Delete</button>
-                      <button className="btn btn-primary" onClick={() => handleEditSong(song)}>Edit</button>
+                      <button onClick={() => handleDeleteSong(song.id)} className="btn btn-danger action-button">Delete</button>
+                      <button className="btn btn-primary action-button" onClick={() => handleEditSong(song)}>Edit</button>
                     </td>
                   </tr>
                 ))}

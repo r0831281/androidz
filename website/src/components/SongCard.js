@@ -10,7 +10,7 @@ const SongCard = ({ song }) => {
   return (
     <div className="col-lg-4 col-md-6 d-flex align-items-stretch">
       <div className="card mb-4" style={{ borderRadius: '16px', border: 'none', width: '100%' }}>
-        <div className="card-body d-flex flex-column">
+        <div className="card-body d-flex flex-column center">
           <div className="video-container">
             {embedUrl && (
               <div className="ratio ratio-16x9 mt-auto">
@@ -25,7 +25,7 @@ const SongCard = ({ song }) => {
             )}
             <p className="artist-text text-muted">By: Andro!dz</p>
           </div>
-          <h3 className="card-title">{song.title}</h3>
+          <h3 className="card-title text-center">{song.title}</h3>
         </div>
       </div>
     </div>

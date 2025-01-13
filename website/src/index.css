@@ -114,3 +114,12 @@ code {
   height: 25px;
   filter: invert(20%);
 }
+
+.social-icon:hover {
+  filter: invert(50%);
+}
+
+.action-button {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
