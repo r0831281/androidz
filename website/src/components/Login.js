@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { provider } from "../firebase";
+import { provider } from "../firebase.js"; // Adjust the path according to your project structure
 import { adminCheck } from "../services/showService";
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const [whitelistedEmails, setWhitelistedEmails] = useState([]);
 
   useEffect(() => {
@@ -23,6 +23,7 @@ const Login = () => {
         console.log("Whitelisted emails: ", whitelistedEmails);
         if (whitelistedEmails.includes(user.email)) {
           console.log("User signed in: ", user);
+          onLogin(); // Call the onLogin prop to update the login state
         } else {
           console.error("Access denied: User is not whitelisted");
           auth.signOut(); // Sign out the user if not whitelisted
@@ -35,24 +36,24 @@ const Login = () => {
       });
   };
 
-return (
+  return (
     <div>
-        <button 
-            onClick={handleLogin} 
-            style={{
-                backgroundColor: '#4285F4',
-                color: 'white',
-                padding: '10px 20px',
-                border: 'none',
-                borderRadius: '5px',
-                cursor: 'pointer',
-                fontSize: '16px'
-            }}
-        >
-            Sign in with Google
-        </button>
+      <button 
+        onClick={handleLogin} 
+        style={{
+          backgroundColor: '#4285F4',
+          color: 'white',
+          padding: '10px 20px',
+          border: 'none',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          fontSize: '16px'
+        }}
+      >
+        Sign in with Google
+      </button>
     </div>
-);
+  );
 };
 
 export default Login;

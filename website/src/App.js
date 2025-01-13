@@ -5,16 +5,19 @@ import AdminPage from './components/AdminPage';
 import NotFound from './components/NotFound';
 import Login from './components/Login'; // Import the Login component
 
+
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route exact path="/" element={<MainPage />} />
-        <Route path="/admin" element={<AdminPage />} />
-        <Route path="/login" element={<Login />} /> {/* Add Login route */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Router>
+    <div className="App">
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<MainPage />} />
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/login" element={<Login />} /> {/* Add Login route */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 

@@ -1,4 +1,4 @@
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import { collection, getDocs, addDoc, deleteDoc, doc, setDoc} from "firebase/firestore";
 import { db } from "../firebase";
 
 export const fetchShows = async () => {
@@ -61,3 +61,42 @@ export const adminCheck = async () => {
   console.log("Whitelisted emails: ", whitelisted); // Array of whitelisted emails
   return whitelisted;
 };
+
+export const deleteShow = async (showId) => {
+  try {
+    await deleteDoc(doc(db, "Shows", showId));
+    console.log("Show deleted successfully");
+  } catch (error) {
+    console.error("Error deleting show: ", error.message);
+  }
+}
+
+export const deleteSong = async (songId) => {
+  try {
+    await deleteDoc(doc(db, "Songs", songId));
+    console.log("Song deleted successfully");
+  } catch (error) {
+    console.error("Error deleting song: ", error.message);
+  }
+}
+
+
+export const updateShow = async (showId, updatedShow) => {
+  try {
+    await setDoc(doc(db, "Shows", showId), updatedShow);
+    console.log("Show updated successfully");
+  } catch (error) {
+    console.error("Error updating show: ", error.message);
+  }
+}
+
+export const updateSong = async (songId, updatedSong) => {
+  try {
+    await setDoc(doc(db, "Songs", songId), updatedSong);
+    console.log("Song updated successfully");
+  } catch (error) {
+    console.error("Error updating song: ", error.message);
+  }
+}
+
+
