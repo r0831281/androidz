@@ -5,6 +5,7 @@ import '../index.css';
 import LightningFlash from './LightningFlash';
 import SongCard from './SongCard';
 
+
 function MainPage() {
   const [shows, setShows] = useState([]);
   const [songs, setSongs] = useState([]);
@@ -70,15 +71,21 @@ function MainPage() {
   });
 
   return (
-    <div className="container-fluid vh-100 text-white">
+    <div className="container-fluid vh-100 text-white text-center">
       <LightningFlash />
+      <img
+        src="wit.svg"
+        alt="A N D R O ! D Z"
+        className="mx-auto mb-4"
+        style={{ width: '100%', maxWidth: '79%', paddingTop: '65px' }}
+        loading="lazy"
+      />
 
       <div className="text-center py-4">
-        <img src="wit.svg" alt="A N D R O ! D Z" className="mx-auto mb-4" width="100%" height={'125px'} loading="lazy" />
         <h1 className="display-4 text-warning Orbitron">Songs</h1>
       </div>
 
-      <div className='container mb-5' style={{ minHeight: '400px' }}>
+      <div className='container mb-5' style={{ minHeight: '400px', maxWidth: '1200px' }}>
         <div className="row g-4 d-flex justify-content-center">
           {songs.map((song) => (
             <SongCard key={song.id} song={song} />
@@ -86,7 +93,7 @@ function MainPage() {
         </div>
       </div>
 
-      <div className="container mb-5 table-responsive" style={{ minHeight: '500px' }}>
+      <div className="container mb-5 table-responsive" style={{ minHeight: '500px', maxWidth: '1200px' }}>
         <h1 className="display-4 text-warning text-center mb-4 Orbitron">Shows</h1>
         <div className="table-responsive">
           <table className="table table-bordered text-center rounded-lg" style={{ tableLayout: 'fixed', width: '100%' }}>
@@ -104,7 +111,7 @@ function MainPage() {
                 return (
                   <tr
                     key={show.id}
-                    style={{ minHeight: '60px', overflow: 'hidden'}}  // Added for CLS prevention
+                    style={{ minHeight: '60px', overflow: 'hidden' }}  // Added for CLS prevention
                     className={isPastShow ? 'bg-light' : 'bg-secondary text-white'}
                   >
                     <td className={isPastShow ? 'text-muted bg-secondary' : 'bg-light'}>{show.venue}</td>
@@ -134,9 +141,9 @@ function MainPage() {
       </div>
 
       {/* Contact Form Section */}
-      <div className="container mb-5 p-4">
+      <div className="container mb-5 p-4" style={{ maxWidth: '1200px' }}>
         <h1 className="display-4 text-warning text-center mb-4 Orbitron">Contact Us</h1>
-        <form onSubmit={handleFormSubmit} className="p-5 bg-dark rounded">
+        <form onSubmit={handleFormSubmit} className="p-6 rounded">
           <div className="mb-3">
             <label htmlFor="name" className="form-label text-warning">Name</label>
             <input
@@ -184,6 +191,9 @@ function MainPage() {
           </a>
           <a href="https://linktr.ee/androidz_music" target="_blank" rel="noopener noreferrer">
             <img src="https://cdn.brandfetch.io/id_tNIm05N/theme/dark/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B" alt="Linktree" className="social-icon" width="30" height="30" loading="lazy" />
+          </a>
+          <a href="https://open.spotify.com/artist/0s9J0JZdj9HbTfjpV7fjn4?si=6gYxdmPUTpikrz2eg7OZlg" target="_blank" rel="noopener noreferrer">
+            <img src="spotify.png" alt="Spotify" className="social-icon" width="30" height="30" loading="lazy" />
           </a>
         </div>
       </footer>

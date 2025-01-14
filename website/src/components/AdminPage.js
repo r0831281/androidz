@@ -54,12 +54,14 @@ function AdminPage() {
         event.preventDefault();
         await makeShow(event);
         setDataChanged(!dataChanged);
+        event.target.reset();
     };
 
     const handleCreateSong = async (event) => {
         event.preventDefault();
         await makeSong(event);
         setDataChanged(!dataChanged);
+        event.target.reset();
     };
 
     const handleEditShow = (show) => {
@@ -121,14 +123,6 @@ function AdminPage() {
                         </form>
                     </div>
 
-                    <div className="mb-4">
-                        <h2>Create Songs</h2>
-                        <form onSubmit={handleCreateSong} className="form-inline">
-                            <input type="text" placeholder="Song Title" name="songTitle" required className="form-control mr-2 mb-2" />
-                            <input type="text" placeholder="Song Link" name="songLink" required className="form-control mr-2 mb-2" />
-                            <button type="submit" className="btn btn-primary mb-2">Create Song</button>
-                        </form>
-                    </div>
 
                     <div className="mb-4">
                         <h2>Existing Shows</h2>
@@ -165,6 +159,16 @@ function AdminPage() {
                             <Pagination.Next onClick={() => setShowsCurrentPage(Math.min(showsPageCount, showsCurrentPage + 1))} disabled={showsCurrentPage === showsPageCount} />
                         </Pagination>
                     </div>
+
+                    <div className="mb-4">
+                        <h2>Create Songs</h2>
+                        <form onSubmit={handleCreateSong} className="form-inline">
+                            <input type="text" placeholder="Song Title" name="songTitle" required className="form-control mr-2 mb-2" />
+                            <input type="text" placeholder="Song Link" name="songLink" required className="form-control mr-2 mb-2" />
+                            <button type="submit" className="btn btn-primary mb-2">Create Song</button>
+                        </form>
+                    </div>
+
 
                     <div className="mb-4">
                         <h2>Existing Songs</h2>
