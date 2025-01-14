@@ -74,11 +74,11 @@ function MainPage() {
       <LightningFlash />
 
       <div className="text-center py-4">
-        <img src="wit.svg" alt="A N D R O ! D Z" className="mx-auto mb-4" width="100%" style={{ maxHeight: '250px' }} loading="lazy" />
+        <img src="wit.svg" alt="A N D R O ! D Z" className="mx-auto mb-4" width="100%" height={'125px'} loading="lazy" />
         <h1 className="display-4 text-warning Orbitron">Songs</h1>
       </div>
 
-      <div className="container mb-5">
+      <div>
         <div className="row g-4 d-flex justify-content-center">
           {songs.map((song) => (
             <SongCard key={song.id} song={song} />
@@ -89,7 +89,7 @@ function MainPage() {
       <div className="container mb-5">
         <h1 className="display-4 text-warning text-center mb-4 Orbitron">Shows</h1>
         <div className="table-responsive">
-          <table className="table table-bordered text-center rounded-lg" style={{ tableLayout: 'fixed', width: '100%' }}>
+          <table className="table table-bordered text-center rounded-lg" style={{ tableLayout: 'fixed', width: '100%', height: '100%' }}>
             <thead className="table-dark">
               <tr>
                 <th>Venue</th>
@@ -102,7 +102,11 @@ function MainPage() {
                 const showDate = moment(show.date, 'DD/MM/YY').toDate();
                 const isPastShow = showDate < new Date();
                 return (
-                  <tr key={show.id} className={isPastShow ? 'bg-light' : 'bg-secondary text-white'}>
+                  <tr
+                    key={show.id}
+                    style={{ minHeight: '50px' }}  // Added for CLS prevention
+                    className={isPastShow ? 'bg-light' : 'bg-secondary text-white'}
+                  >
                     <td className={isPastShow ? 'text-muted bg-secondary' : 'bg-light'}>{show.venue}</td>
                     <td className={isPastShow ? 'text-muted bg-secondary' : 'bg-light'}>
                       {moment(show.date, 'DD/MM/YY').format('MMMM Do, YYYY')}
@@ -115,7 +119,7 @@ function MainPage() {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          {isPastShow ? 'Video' : 'Buy Tickets'}
+                          {isPastShow ? 'Video' : 'Tickets'}
                         </a>
                       ) : (
                         'N/A'

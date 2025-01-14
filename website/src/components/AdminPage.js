@@ -204,69 +204,70 @@ function AdminPage() {
                 <Login onLogin={handleLogin} />
             )}
 
-      <Modal
-        isOpen={isModalOpen}
-        onRequestClose={() => setIsModalOpen(false)}
-        contentLabel="Edit Modal"
-      >
-        <h2>Edit {editType === 'show' ? 'Show' : 'Song'}</h2>
-        <form onSubmit={handleUpdate}>
-          {editType === 'show' ? (
+<Modal
+    isOpen={isModalOpen}
+    onRequestClose={() => setIsModalOpen(false)}
+    overlayClassName="react-modal-overlay"
+    className="react-modal-content"
+    contentLabel="Edit Modal"
+>
+    <h2>Edit {editType === 'show' ? 'Show' : 'Song'}</h2>
+    <form onSubmit={handleUpdate}>
+        {editType === 'show' ? (
             <>
-              <input
-                type="text"
-                name="venue"
-                value={currentEditData?.venue || ''}
-                onChange={handleChange}
-                placeholder="Show Venue"
-                required
-                className="form-control mb-2"
-              />
-              <input
-                type="text"
-                name="date"
-                value={currentEditData?.date || ''}
-                onChange={handleChange}
-                placeholder="Show Date"
-                required
-                className="form-control mb-2"
-              />
-              <input
-                type="text"
-                name="tickets"
-                value={currentEditData?.tickets || ''}
-                onChange={handleChange}
-                placeholder="Show Tickets"
-                className="form-control mb-2"
-              />
+                <input
+                    type="text"
+                    name="venue"
+                    value={currentEditData?.venue || ''}
+                    onChange={handleChange}
+                    placeholder="Show Venue"
+                    required
+                    className="form-control mb-2"
+                />
+                <input
+                    type="text"
+                    name="date"
+                    value={currentEditData?.date || ''}
+                    onChange={handleChange}
+                    placeholder="Show Date"
+                    required
+                    className="form-control mb-2"
+                />
+                <input
+                    type="text"
+                    name="tickets"
+                    value={currentEditData?.tickets || ''}
+                    onChange={handleChange}
+                    placeholder="Show Tickets"
+                    className="form-control mb-2"
+                />
             </>
-
-          ) : (
+        ) : (
             <>
-              <input
-                type="text"
-                name="title"
-                value={currentEditData?.title || ''}
-                onChange={handleChange}
-                placeholder="Song Title"
-                required
-                className="form-control mb-2"
-              />
-              <input
-                type="text"
-                name="link"
-                value={currentEditData?.link || ''}
-                onChange={handleChange}
-                placeholder="Song Link"
-                required
-                className="form-control mb-2"
-              />
+                <input
+                    type="text"
+                    name="title"
+                    value={currentEditData?.title || ''}
+                    onChange={handleChange}
+                    placeholder="Song Title"
+                    required
+                    className="form-control mb-2"
+                />
+                <input
+                    type="text"
+                    name="link"
+                    value={currentEditData?.link || ''}
+                    onChange={handleChange}
+                    placeholder="Song Link"
+                    required
+                    className="form-control mb-2"
+                />
             </>
-          )}
-          <button type="submit" className="btn btn-primary">Update</button>
-          <button type="button" className="btn btn-secondary" onClick={() => setIsModalOpen(false)}>Cancel</button>
-        </form>
-      </Modal>
+        )}
+        <button type="submit" className="btn btn-primary">Update</button>
+        <button type="button" className="btn btn-secondary" onClick={() => setIsModalOpen(false)}>Cancel</button>
+    </form>
+</Modal>
     </div>
   );
 }

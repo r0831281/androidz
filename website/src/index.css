@@ -1,46 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+
 body {
   margin: 0;
-  font-family: 'Orbitron';
+  font-family: 'Orbitron', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #0a0a0a;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 .silkscreen-regular {
-  font-family: "Silkscreen", serif;
+  font-family: 'Silkscreen', serif;
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 .silkscreen-bold {
-  font-family: "Silkscreen", serif;
+  font-family: 'Silkscreen', serif;
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
+
 .table-container {
   width: 80%; /* Adjust width as needed */
   margin: 0 auto; /* Center the table */
 }
 
 .Orbitron {
-  font-family: "Orbitron", sans-serif;
+  font-family: 'Orbitron', sans-serif;
+  font-display: swap;
 }
-
-
-
 
 @keyframes lightningFlash {
   0%, 100% {
-      opacity: 0;
+    opacity: 0;
   }
   50% {
-      opacity: 1;
+    opacity: 1;
   }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+.react-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent background */
+  z-index: 1050; /* Ensure it overlays all other content */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.react-modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1051;
+}
+
+.modal-open {
+  overflow: hidden; /* Prevent scrolling on the body when the modal is open */
+}
+
+table tbody tr {
+  min-height: 50px;
+  height: 50px;
 }
 
 .lightning-flash {
@@ -57,7 +105,6 @@ code {
   filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
   opacity: 0; /* Default to hidden */
 }
-
 
 .attention-grabber-button {
   display: inline-block;
