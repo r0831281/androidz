@@ -85,6 +85,25 @@ table {
     white-space: normal; /* Allow text to wrap */
     overflow-wrap: break-word;
   }
+  body {
+    font-size: 14px; /* Adjust as needed */
+  }
+  .footer {
+    margin-right: -10px !important;
+    top: 18vh !important;
+    z-index: 9999 !important;
+    padding: -10px !important;
+  }
+  .social-icons {
+    flex-direction: row;
+    padding: -10px !important;
+    margin: -5px !important;
+  }
+  .social-icon {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
 }
 
 .react-modal-content {
