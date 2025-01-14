@@ -48,14 +48,15 @@ code {
 
 @keyframes pulse {
   0% {
-    opacity: 0.8;
+    opacity: 1;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.33;
   }
   100% {
     opacity: 0.8;
   }
+  
 }
 
 .react-modal-overlay {
@@ -69,6 +70,21 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+table {
+  word-wrap: break-word;
+  table-layout: auto; /* Default setting */
+}
+
+@media (max-width: 768px) {
+  table {
+    table-layout: fixed; /* Ensure consistent column widths */
+  }
+  th, td {
+    white-space: normal; /* Allow text to wrap */
+    overflow-wrap: break-word;
+  }
 }
 
 .react-modal-content {

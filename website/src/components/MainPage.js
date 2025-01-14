@@ -86,10 +86,10 @@ function MainPage() {
         </div>
       </div>
 
-      <div className="container mb-5">
+      <div className="container mb-5 table-responsive">
         <h1 className="display-4 text-warning text-center mb-4 Orbitron">Shows</h1>
         <div className="table-responsive">
-          <table className="table table-bordered text-center rounded-lg" style={{ tableLayout: 'fixed', width: '100%', height: '100%' }}>
+          <table className="table table-bordered text-center rounded-lg " style={{ tableLayout: 'fixed', width: '100%', height: '100%' }}>
             <thead className="table-dark">
               <tr>
                 <th>Venue</th>
@@ -104,7 +104,7 @@ function MainPage() {
                 return (
                   <tr
                     key={show.id}
-                    style={{ minHeight: '50px' }}  // Added for CLS prevention
+                    style={{ minHeight: '60px', overflow: 'hidden'}}  // Added for CLS prevention
                     className={isPastShow ? 'bg-light' : 'bg-secondary text-white'}
                   >
                     <td className={isPastShow ? 'text-muted bg-secondary' : 'bg-light'}>{show.venue}</td>
