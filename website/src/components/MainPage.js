@@ -78,7 +78,7 @@ function MainPage() {
         <h1 className="display-4 text-warning Orbitron">Songs</h1>
       </div>
 
-      <div>
+      <div className='container mb-5' style={{ minHeight: '400px' }}>
         <div className="row g-4 d-flex justify-content-center">
           {songs.map((song) => (
             <SongCard key={song.id} song={song} />
@@ -86,10 +86,10 @@ function MainPage() {
         </div>
       </div>
 
-      <div className="container mb-5 table-responsive">
+      <div className="container mb-5 table-responsive" style={{ minHeight: '500px' }}>
         <h1 className="display-4 text-warning text-center mb-4 Orbitron">Shows</h1>
         <div className="table-responsive">
-          <table className="table table-bordered text-center rounded-lg " style={{ tableLayout: 'fixed', width: '100%', height: '100%' }}>
+          <table className="table table-bordered text-center rounded-lg" style={{ tableLayout: 'fixed', width: '100%' }}>
             <thead className="table-dark">
               <tr>
                 <th>Venue</th>
