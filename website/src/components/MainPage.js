@@ -88,11 +88,11 @@ function MainPage() {
         </div>
       </div>
       
-      <div className="row mb-4">
+      {/* <div className="row mb-4">
         <div className="col">
           <ButtonComponent text={"Stem Nu op ons voor de nieuwe lichting!"} url={"https://www.vrt.be/interactie/stem/De-Nieuwe-Lichting-2025/"} />
         </div>
-      </div>
+      </div> */}
 
       <div className="text-center py-4">
         <h1 className="display-1 text-warning Orbitron">Songs</h1>

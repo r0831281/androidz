@@ -1,15 +1,19 @@
 import React from 'react';
 import './HeroSection.css'; // Import the CSS file for styling
+import ButtonComponent from './ButtonComponent';
 
 const HeroSection = () => {
     return (
-        <div className="hero-section text-center text-white">
+        <div className="hero-section text-center text-white pb-2">
             <img
                 src="/group.jpg"
                 alt="Hero"
                 className="hero-image"
             />
+
             <div className="hero-text">
+            <ButtonComponent text={"Stem Nu op ons voor de nieuwe lichting!"} url={"https://www.vrt.be/interactie/stem/De-Nieuwe-Lichting-2025/"}  />
+            <br />
                 <p className="lead">
                     ANDRO!DZ is een Belgische live drum 'n' bass band, bekend om hun energieke optredens en innovatieve sound. 
                     Als finalisten in “De Nieuwe Lichting 2025” met hun single “Forward” hebben ze hun plaats verstevigd als een 

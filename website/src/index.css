@@ -156,6 +156,8 @@ table tbody tr {
   text-transform: uppercase; /* Bold uppercase text */
   text-decoration: none; /* Remove underline for links */
   text-align: center;
+  width: 90%;
+  height: 10vp;
 }
 
 .attention-grabber-button:hover {

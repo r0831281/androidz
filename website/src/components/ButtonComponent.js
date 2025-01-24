@@ -3,7 +3,8 @@ import "../index.css";
 
 const ButtonComponent = ({ text, url }) => {
   return (
-    <a
+    <div>
+      <a
       href={url}
       target="_blank"
       rel="noopener noreferrer"
@@ -11,6 +12,8 @@ const ButtonComponent = ({ text, url }) => {
     >
       {text}
     </a>
+    </div>
+
   );
 };
 export default ButtonComponent;
