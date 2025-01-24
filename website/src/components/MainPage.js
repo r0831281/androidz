@@ -4,7 +4,8 @@ import { fetchShows, fetchSongs } from '../services/showService';
 import '../index.css'; 
 import LightningFlash from './LightningFlash';
 import SongCard from './SongCard';
-
+import ButtonComponent from './ButtonComponent';
+import HeroSection from './HeroSection'; // Import the HeroSection component
 
 function MainPage() {
   const [shows, setShows] = useState([]);
@@ -81,8 +82,20 @@ function MainPage() {
         loading="lazy"
       />
 
+      <div className="row mb-4">
+        <div className="col">
+          <HeroSection />
+        </div>
+      </div>
+      
+      <div className="row mb-4">
+        <div className="col">
+          <ButtonComponent text={"Stem Nu op ons voor de nieuwe lichting!"} url={"https://www.vrt.be/interactie/stem/De-Nieuwe-Lichting-2025/"} />
+        </div>
+      </div>
+
       <div className="text-center py-4">
-        <h1 className="display-4 text-warning Orbitron">Songs</h1>
+        <h1 className="display-1 text-warning Orbitron">Songs</h1>
       </div>
 
       <div className='container mb-5' style={{ minHeight: '400px', maxWidth: '1200px' }}>
@@ -94,7 +107,7 @@ function MainPage() {
       </div>
 
       <div className="container mb-5 table-responsive" style={{ minHeight: '500px', maxWidth: '1200px' }}>
-        <h1 className="display-4 text-warning text-center mb-4 Orbitron">Shows</h1>
+        <h1 className="display-1 text-warning text-center mb-4 Orbitron">Shows</h1>
         <div className="table-responsive">
           <table className="table table-bordered text-center rounded-lg" style={{ tableLayout: 'fixed', width: '100%' }}>
             <thead className="table-dark">
@@ -142,7 +155,7 @@ function MainPage() {
 
       {/* Contact Form Section */}
       <div className="container mb-5 p-4" style={{ maxWidth: '1200px' }}>
-        <h1 className="display-4 text-warning text-center mb-4 Orbitron">Contact Us</h1>
+        <h1 className="display-1 text-warning text-center mb-4 Orbitron">Contact Us</h1>
         <form onSubmit={handleFormSubmit} className="p-6 rounded">
           <div className="mb-3">
             <label htmlFor="name" className="form-label text-warning">Name</label>
